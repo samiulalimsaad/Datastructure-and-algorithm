@@ -11,14 +11,14 @@ const buildGraph = (nodes) => {
     return graph;
 };
 
-const hasPathDFS = (graph, node, dest, visited = new Set()) => {
+const hasPathDFS = (graph, node, dest, visited) => {
     if (node === dest) return true;
     if (visited.has(node)) return false;
 
     visited.add(node);
 
     for (const child of graph[node]) {
-        if (hasPathDFS(graph, child, dest)) return true;
+        if (hasPathDFS(graph, child, dest, visited)) return true;
     }
 
     return false;
