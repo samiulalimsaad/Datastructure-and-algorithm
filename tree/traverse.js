@@ -6,15 +6,22 @@ class Node {
     }
 }
 
-function dfs(root) {
+function dfsStack(root) {
+    if (root === null) return [];
     const stack = [root];
+    const result = [];
 
     while (stack.length) {
         const current = stack.pop();
-        console.log(current.node);
+        result.push(current.node);
         if (current.right) stack.push(current.right);
         if (current.left) stack.push(current.left);
     }
+    return result;
+}
+function dfsRecursive(root) {
+    if (root === null) return [];
+    return [root.node, ...dfsRecursive(root.left), ...dfsRecursive(root.right)];
 }
 
 const a = new Node("a");
@@ -31,4 +38,5 @@ b.right = e;
 c.right = f;
 
 // console.log(a);
-dfs(a);
+console.log(dfsStack(a));
+console.log(dfsRecursive(a));
