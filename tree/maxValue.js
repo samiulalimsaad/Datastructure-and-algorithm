@@ -7,6 +7,14 @@ class Node {
 }
 
 function dfsRecursive(root) {
+    if (root === null) return -Infinity;
+    return Math.max(
+        root.node,
+        dfsRecursive(root.left),
+        dfsRecursive(root.right)
+    );
+}
+function dfsStack(root) {
     if (root === null) return [];
     const stack = [root];
     let min = root.node;
@@ -49,4 +57,5 @@ c.right = f;
 
 // console.log(a);
 console.log(dfsRecursive(a));
+console.log(dfsStack(a));
 console.log(bfsQueue(a));
